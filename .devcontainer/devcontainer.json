@@ -9,6 +9,12 @@
   //     "NIGHTLY_VERSION": "nightly-2025-01-01"
   //   }
   // },
+  "runArgs": [
+    // enabling USB devices in the container:
+    "--privileged",
+    "--mount",
+    "type=bind,source=/run/udev,target=/run/udev,readonly"
+  ],
   "customizations": {
     "vscode": {
       "settings": {
@@ -29,14 +35,17 @@
         "rust-lang.rust-analyzer",
         "tamasfe.even-better-toml",
         "vadimcn.vscode-lldb",
-        "serayuzgur.crates",
+        "fill-labs.dependi",
         "mutantdino.resourcemonitor",
         "yzhang.markdown-all-in-one",
+        "ms-vscode.cpptools",
+        "mhutchie.git-graph",
         "Wokwi.wokwi-vscode"
       ]
     }
   },
   "remoteUser": "esp",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
-  "workspaceFolder": "/workspace"
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": ".devcontainer/setup.sh"
 }
